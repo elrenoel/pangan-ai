@@ -2,6 +2,7 @@ from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 import json
+import os
 from pathlib import Path
 
 app = FastAPI(title="Pangan AI - Monitoring Harga Pangan Indonesia")
@@ -16,7 +17,15 @@ app.add_middleware(
 )
 
 # ── Data paths ──────────────────────────────────────────────────────
-BASE_DIR = Path(__file__).resolve().parent.parent / "pangan_pipeline" / "data"
+# Mendapatkan root directory project (satu level di atas folder backend)
+ROOT_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = ROOT_DIR / "pangan_pipeline" / "data"
+
+# Tambahkan print untuk debugging di Vercel Logs
+print(f"Mencari data di: {BASE_DIR}")
+if not BASE_DIR.exists():
+    print("WARNING: Folder pangan_pipeline tidak ditemukan!")
+    
 PREDICTIONS_CSV = BASE_DIR / "predictions" / "csv"
 PREDICTIONS_JSON = BASE_DIR / "predictions" / "json"
 DATASET_DIR = BASE_DIR / "dataset" / "clean_dataset"
