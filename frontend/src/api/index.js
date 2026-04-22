@@ -1,4 +1,4 @@
-const BASE = '/api';
+const BASE =  process.env.REACT_APP_API_URL || "http://localhost:8000";
 
 export async function fetchKomoditas() {
   const res = await fetch(`${BASE}/komoditas`);
