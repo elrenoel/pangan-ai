@@ -18,8 +18,8 @@ app.add_middleware(
 
 # ── Data paths ──────────────────────────────────────────────────────
 # Mendapatkan root directory project (satu level di atas folder backend)
-ROOT_DIR = Path(__file__).resolve().parent.parent
-BASE_DIR = ROOT_DIR / "pangan_pipeline" / "data"
+ROOT_DIR = Path(__file__).resolve().parent
+BASE_DIR = ROOT_DIR / "data"
 
 # Tambahkan print untuk debugging di Vercel Logs
 print(f"Mencari data di: {BASE_DIR}")
